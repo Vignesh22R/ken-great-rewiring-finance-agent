@@ -1,25 +1,9 @@
-# Ken's Great Rewiring — Finance Mock MCP
+# Ken Great Rewiring — Finance Decision MCP Mock
 
-Two custom capabilities are exposed:
+Competition mock MCP server for the Pine Labs AgenticOrg build.
 
-1. `get_financial_context` (READ): transactions, active mandates, upcoming renewals, usage signals.
-2. `manage_payment` (WRITE): HOLD, RELEASE, CANCEL. RELEASE/CANCEL require HELD first.
+Endpoints: `/mcp` and `/api/mcp` (both rewrite to the Vercel function).
 
-Controlled failures are included for evals: timeout, malformed response, already processed, insufficient balance, and no mandates.
-
-The third custom capability slot is intentionally reserved for the Gnani integration if required.
-
-## Local
-npm install
-npm run typecheck
-npm run dev
-
-MCP endpoint: http://localhost:3000/mcp
-
-## Vercel
-Import this repo into Vercel. After deployment use:
-https://YOUR-PROJECT.vercel.app/mcp
-
-In AgenticOrg: Custom / Generic Connector -> MCP enabled -> Finance -> Auth None unless the competition requires authentication.
-
-This is a competition mock of missing capabilities, not a live Pine Labs production API.
+Tools:
+- `get_financial_context` — read-only financial context and controlled failure scenarios.
+- `manage_payment` — hold/release/cancel with explicit-hold gating and controlled failure scenarios.

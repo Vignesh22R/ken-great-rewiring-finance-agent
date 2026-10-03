@@ -1,16 +1,16 @@
 {
   "name": "ken-great-rewiring-finance-mcp",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@modelcontextprotocol/node": "^2.0.0",
+    "mcp-handler": "^2.1.0",
     "@modelcontextprotocol/server": "^2.0.0",
-    "zod": "^4.0.0"
+    "zod": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
