@@ -1,5 +1,5 @@
-import { toNodeHandler } from "@modelcontextprotocol/node";
-import { createMcpHandler, McpServer } from "@modelcontextprotocol/server";
+import { createMcpHandler } from "mcp-handler";
+import { McpServer } from "@modelcontextprotocol/server";
 import * as z from "zod/v4";
 
 type PaymentStatus = "PENDING" | "HELD" | "RELEASED" | "CANCELLED";
@@ -271,13 +271,11 @@ function buildServer(): McpServer {
 
 // AgenticOrg needs a normal remote MCP HTTP endpoint. Vercel's /api/*.ts
 // runtime is Node-based, so adapt the web-standard MCP handler to Node once.
-const mcpHandler = createMcpHandler(buildServer, {
+const handler = createMcpHandler(buildServer, {
   responseMode: "json",
   keepAliveMs: 0,
 });
 
-const nodeHandler = toNodeHandler(mcpHandler);
-
-export default nodeHandler;
+export { handler as GET, handler as POST };
 
 export const maxDuration = 60;
