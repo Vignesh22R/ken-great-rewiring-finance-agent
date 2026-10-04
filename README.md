@@ -1,9 +1,14 @@
-# Ken Great Rewiring — Finance Decision MCP Mock
+# Ken Great Rewiring — Finance Decision Mock MCP
 
 Competition mock MCP server for the Pine Labs AgenticOrg build.
 
-Endpoints: `/mcp` and `/api/mcp` (both rewrite to the Vercel function).
+Endpoint:
+`/api/mcp`
 
 Tools:
-- `get_financial_context` — read-only financial context and controlled failure scenarios.
-- `manage_payment` — hold/release/cancel with explicit-hold gating and controlled failure scenarios.
+- `get_financial_context` — read-only transactions, mandates and derived signals.
+- `manage_payment` — controlled HOLD / RELEASE / CANCEL state transition with failure scenarios.
+
+This is a competition mock, not a production Pine Labs API.
+
+The server uses the official MCP TypeScript SDK v2 and exposes a Vercel-compatible callable default export that forwards to the SDK's web-standard `fetch` handler.
