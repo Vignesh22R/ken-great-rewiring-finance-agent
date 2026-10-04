@@ -272,7 +272,6 @@ function buildServer(): McpServer {
 // AgenticOrg needs a normal remote MCP HTTP endpoint. Vercel's /api/*.ts
 // runtime is Node-based, so adapt the web-standard MCP handler to Node once.
 const handler = createMcpHandler(buildServer, {
-  responseMode: "json",
   keepAliveMs: 0,
 });
 
