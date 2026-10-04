@@ -72,12 +72,7 @@ const result = (data: unknown, isError = false) => ({
   isError,
 });
 
-function buildServer(): McpServer {
-  const server = new McpServer(
-    { name: "ken-finance-mock", version: "1.1.0" },
-    { capabilities: { tools: {} } },
-  );
-
+function registerTools(server: McpServer): void {
   server.registerTool(
     "get_financial_context",
     {
@@ -266,7 +261,6 @@ function buildServer(): McpServer {
     },
   );
 
-  return server;
 }
 
 // AgenticOrg needs a normal remote MCP HTTP endpoint. Vercel's /api/*.ts
@@ -275,7 +269,10 @@ function buildServer(): McpServer {
 
 
 
-const handler = createMcpHandler(buildServer);
+const handler = createMcpHandler(registerTools, {
+  serverInfo: { name: "ken-finance-mock", version: "1.1.0" },
+  capabilities: { tools: {} },
+});
 
 export { handler as GET, handler as POST };
 
